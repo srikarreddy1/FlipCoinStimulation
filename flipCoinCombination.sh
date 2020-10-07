@@ -53,4 +53,56 @@
    fi
    counter=$(($counter+1))
    done
+   #store the triplet combinations
+   coinflip[HHH]=0
+   coinflip[TTT]=0
+   coinflip[TTH]=0
+   coinflip[THT]=0
+   coinflip[HTT]=0
+   coinflip[HHT]=0
+   coinflip[THH]=0
+   coinflip[HTH]=0
+   counter=0
+   while (( $counter != $number ))
+   do
+   if [[ $((RANDOM%2)) -eq 1 ]]
+   then
+       if [[ $((RANDOM%2)) -eq 1 ]]
+       then
+         if [[ $((RANDOM%2)) -eq 1 ]]
+         then
+           coinflip[HHH]=$((coinflip[HH]+1))
+         else
+           coinflip[HHT]=$((coinflip[HHT]+1))
+        fi
+       else
+          if [[ $((RANDOM%2)) -eq 1 ]]
+          then
+             coinflip[HTH]=$((coinflip[HTH]+1))
+          else
+             coinflip[HTT]=$((coinflip[HTT]+1))
+          fi
+       fi
+   else
+      if [[ $((RANDOM%2)) -eq 1 ]]
+      then
+        if [[ $((RANDOM%2)) -eq 1 ]]
+         then
+           coinflip[THH]=$((coinflip[THH]+1))
+        else
+           coinflip[THT]=$((coinflip[THT]+1))
+        fi
+      else
+       if [[ $((RANDOM%2)) -eq 1 ]]
+       then
+        coinflip[TTH]=$((coinflip[TTH]+1))
+       else
+         coinflip[TTT]=$((coinflip[TTT]+1))
+       fi
+      fi
+   fi
+   counter=$(($counter+1))
+   done
+   echo "${!coinflip[@]} ${coinflip[@]}"
+
    
