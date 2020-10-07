@@ -104,5 +104,30 @@
    counter=$(($counter+1))
    done
    echo "${!coinflip[@]} ${coinflip[@]}"
-
-   
+   # sorting the values and display maximum
+   j=0
+   for i in `echo "${!coinflip[@]}"`
+   do
+      sorting[$j]=$((coinflip[$i]))
+      j=$(($j+1))
+   done
+   #sorting array
+   for (( counter=13; counter!=0; counter-- ));
+   do
+   for (( j=0; j<$counter; j++ ));
+   do
+   if [[ ${sorting[j]} -gt ${sorting[counter]} ]]
+      then
+      temp=$(( ${sorting[counter]} ))
+      sorting[counter]=${sorting[j]}
+      sorting[j]=$temp
+   fi
+   done
+   done
+   for i in `echo "${!coinflip[@]}"`
+     do
+     if [[ ${coinflip[$i]} -eq ${sorting[13]} ]]
+       then
+           echo "$i occured maximum times"
+     fi
+    done
